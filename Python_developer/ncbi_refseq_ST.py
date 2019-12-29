@@ -48,5 +48,5 @@ ftp_download(file_name) #Function for downloading the assembly_summary.txt file 
 complete_genome=extracting_ftp_url(file_name,taxid,status) #for extracting the ftp url for the genomes
 complete_genome=complete_genome.reset_index()#x=complete_genome.head(4) This for reseting the index otherwise i have to pass exact index value to convatenate the STs
 seq_type=genome_process(complete_genome,scheme)
-x['STs']=seq_type
-x.to_csv("Refseq_E_coli_ST.csv",index=False)
+complete_genome['STs']=seq_type
+complete_genome.to_csv("Refseq_E_coli_ST.csv",index=False)
