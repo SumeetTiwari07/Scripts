@@ -49,3 +49,4 @@ complete_genome=extracting_ftp_url(file_name,taxid,status) #for extracting the f
 complete_genome=complete_genome.reset_index()#x=complete_genome.head(4) This for reseting the index otherwise i have to pass exact index value to convatenate the STs
 seq_type=genome_process(complete_genome,scheme)
 x['STs']=seq_type
+x.to_csv("Refseq_E_coli_ST.csv",index=False)
