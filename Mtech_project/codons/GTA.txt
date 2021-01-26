@@ -1,0 +1,4 @@
+	G	T	A
+NCNS	0	1	0
+CNS	1	0	0
+SYN	0	0	1

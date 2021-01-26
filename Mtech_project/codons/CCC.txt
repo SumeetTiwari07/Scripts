@@ -1,0 +1,4 @@
+	C	C	C
+NCNS	1	1	0
+CNS	0	0	0
+SYN	0	0	1

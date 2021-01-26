@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+	<style type="text/css">
+		html{
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+		.dt {
+			width: 100%;
+			height: 100%;
+		}
+		.dt thead{
+			background-color: #D5D5D5;
+			width: 100%;
+			height: 1%;
+			background-image: url("images/24wx7qx.jpg.png");
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+		}
+		.dt th{font-size: 15pt;}
+		.homedivcl tbody{
+			height: 99%;
+		}
+		
+		.listtable tr:nth-child(odd){ 
+			background: #2494DF;
+		}
+	.listtable tr:nth-child(even){
+		background: #1179E9;
+	}
+	.listtable td{
+		padding-top: 5px;
+		padding-bottom: 5px;
+		padding-left: 2px;
+		cursor: pointer;
+		text-indent: 2px;
+		
+		
+	}
+	.listtable{
+		color: white;
+		font-family:arial, helvetica, sans-serif;
+		font-size: 12pt;
+		border-spacing: 10px;
+	}
+	
+	div{
+		width: 100%;
+		height: 100%;
+		padding: 0px;
+	}
+</style>
+<script type="text/javascript">
+	/*function loadDnds(){
+		document.getElementById("mbdy").innerHTML='<object type="text/html" data="dndscalc.html" ></object>'
+	}
+	function loadhome(){
+		document.getElementById("mbdy").innerHTML='<object type="text/html" data="home_page.html" ></object>'
+	}*/
+	
+	function showDiv(divid){
+		hideAll();
+		document.getElementById(divid).style.display="block";
+	}
+	function hideAll(){
+		document.getElementById("homediv").style.display="none";
+		document.getElementById("dndscaldiv").style.display="none";
+		document.getElementById("codoncalc").style.display="none";
+		document.getElementById("dndscodondiv").style.display="none";
+		document.getElementById("publications").style.display="none";
+	}
+</script>
+
+			
+	</head>
+	<body style="height: 600px;width: 100%">
+		<table class="headertable" width="100%" height="100%">
+			<tr background="./images/header.jpg" style="background-size:1500px 700px;background-repeat: no-repeat;vertical-align: top; height: 10%">
+				<td colspan="3" style="vertical-align: middle;">
+					<img src="./images/uoh.jpeg" style="margin-left:6;margin-top:5;float:left;width:105px;height:105px">
+					<h1 style="margin-left:140px;margin-top:15px;color:pink" >Tool for gene and protein substitution analysis</h1>
+				</td>
+			</tr>
+			
+			<tr background="./images/middle.jpg" style="height: 80%; border-color:aqua;background-repeat: no-repeat;background-size: 100% 100%; width: 100%; border-top: solid;">
+				<td width="15%" style="border-right-style: solid;border-width: 2px; vertical-align: top">
+					<table class="listtable">
+							<tr><td onclick="showDiv('homediv')">Home</tr>
+							<tr><td onclick="showDiv('dndscaldiv')">Dn/Ds Calculator</tr>
+							<tr><td onclick="showDiv('codoncalc')">Codon Calculator</tr>
+							<tr><td onclick="showDiv('dndscodondiv')">Dn/Ds usage with codon usage</tr>
+							<tr><td onclick="showDiv('publications')">Publications</tr>
+					</table>
+				</td>
+				<td width="75%" style="vertical-align: top">
+				<div id="homediv" style="display: block;" class="middiv">
+				   	<table class="dt">
+				   		<thead><tr><th>HOME</th></tr></thead>
+				   		<tbody>	
+				   			<tr><td></td></tr>
+				   		</tbody>
+				   	</table>
+				</div>
+				<div id="dndscaldiv" style="display: none;" class="middiv">
+					<form action="rand_test.php" method="post">
+						<table class="dt">
+					   		<thead><tr><th colspan=2>Dn/Ds Calculator</th></tr></thead>
+					   		<tbody>	
+					   			<tr><td align="center">
+					   					Gene Sequence
+					   				</td>
+					   					
+					   				<td align="center">
+					   					Protein Sequence
+					   				</td>
+					   			</tr>
+					   			<tr><td align="center">
+					   					<textarea cols="50" rows="5" name="Nuc_seq"></textarea>
+					   				</td>
+					   					
+					   				<td align="center">
+					   					<textarea cols="50" rows="5" name="Prtn_seq"></textarea>
+					   				</td>
+					   			</tr>
+					   			<tr><td colspan=2 align="center"><input type="submit" value="Calculate"/></td></tr>
+					   		</tbody>
+					   	</table>
+				   	</form>
+				</div>
+				<div id="codoncalc" style="display: none;" class="middiv">
+					<form action="rand_test.php" method="post">
+						<table class="dt">
+					   		<thead><tr><th>Codon usage calculator</th></tr></thead>
+					   		<tbody>	
+					   			<tr><td align="center">Gene Sequence</td></tr>
+					   			<tr><td align="center"><textarea cols="50" rows="5" name="geneseq"></textarea></td></tr>
+					   			<tr><td align="center"><input type='submit' value="Calculate"/></td></tr>
+					   		</tbody>
+					   	</table>
+				   	</form>
+				</div>
+				<div id="dndscodondiv" style="display: none;" class="middiv">
+					<table class="dt">
+				   		<thead><tr><th>Dn/Ds usage with codon usage</th></tr></thead>
+				   		<tbody>	
+				   			<tr><td></td></tr>
+				   		</tbody>
+				   	</table>
+				</div>
+				<div id="publications" style="display: none;" class="middiv">
+					<table class="dt">
+				   		<thead><tr><th>Publications</th></tr></thead>
+				   		<tbody>	
+				   			<tr><td></td></tr>
+				   		</tbody>
+				   	</table>
+				</div>
+				</td>
+				<td width="10%" style="border-left-style: solid;border-width: 2px;vertical-align: top">
+					<table class="listtable" width=100%>
+							<tr><td>Contact Us</tr>
+							<tr><td>Email ID</tr>
+							<tr><td>FAQs</tr>
+							<tr><td>Feedback</tr>
+					</table>
+				</td>				
+			</tr>			
+	
+	<tr class="footer" width="100%" height="10%" background="./images/footer1.jpg" style="background-size:1500px 700px;background-repeat: no-repeat;">
+	<td colspan=3>
+		@Copyright 
+	</td></tr>
+	
+</table>
+	
+	
+	</body>
+
+</html>

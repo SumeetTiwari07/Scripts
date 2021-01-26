@@ -1,0 +1,20 @@
+original residue Changed residue
+A	S
+R	K
+N	Q	H
+D	E
+Q	N
+E	D
+G	P  
+H	N	Q
+I	L	V
+L	I	V
+K	R	Q	E
+M	L	I
+F	M	L	Y
+S	T
+T	S
+W	Y
+Y	W	F
+V	I	L
+C	S
