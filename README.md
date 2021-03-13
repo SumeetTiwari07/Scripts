@@ -1,2 +1,2 @@
 # Scripts
-Development of different scripts or programe in different programming langauage. Mainly perl, python and R
+Consist of scripts written in Perl, python and R, to performe desirable task.
