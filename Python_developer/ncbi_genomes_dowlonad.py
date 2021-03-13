@@ -1,5 +1,5 @@
 #!/usr/bin/envs python
-
+#THis is a script which unables to download the available genomes in ftp ncbi server of bacterial genomes (both individual and a list of bacterial species) 
 import pandas as pd
 from ftplib import FTP
 import urllib.request
