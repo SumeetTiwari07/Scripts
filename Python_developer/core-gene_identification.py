@@ -45,7 +45,7 @@ def samtools(id,loc):
     os.system(bed_coverage)
     #Counting number of reads mapped to individual regions
     #Taking into account of a read mapped to muliple regions or multioverlapping reads
-    subprocess.run(["/home/silver/miniconda3/pkgs/subread-1.6.4-h84994c4_1/bin/featureCounts", "-a", loc+"/ref_seq/reference.saf", "-F", "SAF", "-M", "-O","--donotsort", "-o",input_path+"_read.count", input_path+"_sorted.bam"])
+    subprocess.run(["featureCounts", "-a", loc+"/ref_seq/reference.saf", "-F", "SAF", "-M", "-O","--donotsort", "-o",input_path+"_read.count", input_path+"_sorted.bam"])
     #Bedtools for Calculating the Proportion of the gene covered by the mapped reads
     return()
 
