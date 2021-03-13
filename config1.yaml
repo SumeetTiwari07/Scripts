@@ -1,0 +1,5 @@
+#Input files
+#samples: /scratch1/sumeet/hector_snakemake/sample.tsv
+mzml: /scratch1/sumeet/hector_snakemake/data/PS_2018_Review/PXD000118/LC-MS/mzML
+MGSF: /scratch1/sumeet/hector_snakemake/MSGFPlus/MSGFPlus.jar
+ref: /scratch1/sumeet/hector_snakemake/database.revCat.fasta
