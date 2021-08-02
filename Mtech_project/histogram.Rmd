@@ -1,0 +1,101 @@
+---
+title: "BSUP-684"
+author: "Sumeet Tiwari"
+date: "27/07/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Objective
+Prepare two plots using R (or Python), including the script to produce them in this task.
+
+## Library
+```{r library}
+library(dplyr)
+library(ggplot2)
+```
+
+## Input
+```{r input}
+## Reading the WT and read counts per cell. Files consist ofthree columns: filename, counts, type of reads. 
+wt=read.table("~/Desktop/Project/BSUP-684/counts-wt.txt",header=FALSE)
+colnames(wt) <- c("filename","reads_count","type")
+ko=read.table("~/Desktop/Project/BSUP-684/counts-ko.txt", header=FALSE)
+colnames(ko) <- c("filename","reads_count","type")
+```
+
+## Histogram for WT and KO sample reads count
+Plotting the histogram of reads count from WT and KO samples in individual plots.
+
+```{r}
+# Wild-type
+ggplot(data=wt, aes(reads_count)) + 
+  geom_histogram(bins = 50) +
+  labs(title = "Reads count in KO", x="Number of reads", y="count")
+
+# Knocked-out
+ggplot(data=ko, aes(reads_count)) + 
+  geom_histogram(bins = 50) +
+  labs(title = "Reads count in WT", x="Number of reads", y="count")
+```
+
+## Histogram WT and KO sample reads count
+Plotting the a single histogram for read counts in WT and KO.
+```{r}
+# Merging the data of WT and KO into one. Label the rows "WT" for wildtpe and "KO" for kocked out in the dataframe
+wt_mod=wt[-c(1,3)]
+ko_mod=ko[-c(1,3)]
+wt_mod$sample=replicate(nrow(wt_mod),"WT")
+ko_mod$sample=replicate(nrow(ko_mod), "KO")
+wt_ko_df=rbind(wt_mod,ko_mod)
+
+
+# Plot the historgram by coloring based on the labels "WT" and "KO".
+ggplot(data = wt_ko_df, aes(reads_count, color=sample)) +
+  geom_histogram(bins = 50, alpha=0.5, position = "dodge", fill="white") +
+  labs(title = "Reads count per samples", x="Reads count", y="count")
+```
+
+## Filtering samples
+The plots are not so clear and it appeared that the data has huge amount of samples with low read count.
+```{r}
+# Minimum number of reads in a file from wild-type
+min(wt_mod$reads_count)
+# Maximum number of reads in a file from wild-type
+max(wt_mod$reads_count)
+# Minimum number of reads in a file from knock-out
+min(ko_mod$reads_count)
+```
+
+
+```{r}
+# Maximum number of reads in a file from Kock-out
+max(ko_mod$reads_count)
+
+# Filtering the samples from both WT and KO based on aribtrary defined threshold on 'reads_sample'.
+t=10000 # reads per sample threshold
+filter_wt_df=filter(wt_mod, reads_count >= t)
+filter_ko_df=filter(ko_mod, reads_count >= t)
+filter_wt_ko_df=rbind(filter_wt_df,filter_ko_df)
+
+# Wild-type
+ggplot(data=filter_wt_df, aes(reads_count)) + 
+  geom_histogram(bins = 50) +
+  labs(title = "Reads count in KO", x="Number of reads", y="count")
+
+# Knocked-out
+ggplot(data=filter_ko_df, aes(reads_count)) + 
+  geom_histogram(bins = 50) +
+  labs(title = "Reads count in WT", x="Number of reads", y="count")
+
+# Both Wild-type and Knocked-out 
+ggplot(data = filter_wt_ko_df, aes(reads_count, color=sample)) +
+  geom_histogram(bins = 50, alpha=0.5, position = "dodge", fill="white") +
+  labs(title = "Reads count per samples", x="Reads count", y="count")
+```
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
