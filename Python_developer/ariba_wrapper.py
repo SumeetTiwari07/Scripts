@@ -58,7 +58,7 @@ reads=read_list.readlines()
 reads=[s.rstrip('\n') for s in reads] #Removal of newline '\n' character from read file names
 reads_sorted=sorted(reads)
 
-print "Extracting the reads\n"
+print ("Extracting the reads\n")
 
 for i in reads_sorted:
  if (i.endswith(".tar.gz")):
@@ -75,16 +75,16 @@ for i in reads_sorted:
 os.mkdir(os.getcwd()+'/'+args.outdir)
 
 if args.command == "al":
- print "-------------------------------Executing getref-->prepareref-->run---------------------------------------\n"
- print "-------------------------------Downloading the "+args.db+" database!!!--------------------------------------\n"
+ print ("-------------------------------Executing getref-->prepareref-->run---------------------------------------\n")
+ print ("-------------------------------Downloading the "+args.db+" database!!!--------------------------------------\n")
  os.system("ariba getref "+args.db+' '+args.prefix)
- print "-------------------------------Preparing the refernce for AMR detection!!!-----------------------------------\n"
+ print ("-------------------------------Preparing the refernce for AMR detection!!!-----------------------------------\n")
  os.system("ariba prepareref -f "+args.prefix+".fa -m"+args.prefix+".tsv"+' '+args.prepref+" --threads "+str(args.threads))
- print "-------------------------------Antimicrobial resitance detection in the samples!!!------------------------------\n"
+ print ("-------------------------------Antimicrobial resitance detection in the samples!!!------------------------------\n")
  Parallel(n_jobs=3)(delayed(ariba_run)(read_n,j) for j in range(0,len(read_n),2))
  os.system("ariba summary summary_all "+os.getcwd()+'/'+args.outdir+'/*_report.tsv')
 
 if args.command == "run":
- print "----------------------------Executing only Antimicrobial resitance detection in the samples!!!----------------\n"
+ print ("----------------------------Executing only Antimicrobial resitance detection in the samples!!!----------------\n")
  Parallel(n_jobs=3)(delayed(ariba_run)(read_n,j) for j in range(0,len(read_n),2))
  os.system("ariba summary summary_all "+os.getcwd()+'/'+args.outdir+'/*_report.tsv')
